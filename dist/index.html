@@ -1,0 +1,1754 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>P&P Fitness | Premier Gym & Strength Centre | CIDCO N-8, Chhatrapati Sambhajinagar</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="P&P Fitness is Chhatrapati Sambhajinagar's premier gym and strength facility at Bajrang Chowk, CIDCO N-8. 100% Air-Conditioned, Olympic free weights, weekly CrossFit, steam & personal training by Pradyuman Sir. Claim your 1-Day Free Trial Pass online!">
+  <meta name="keywords" content="P&P Fitness, Gym CIDCO N8, Gym Bajrang Chowk, Best gym in Aurangabad, Best gym in Chhatrapati Sambhajinagar, Fitness Centre CIDCO, Personal Training Pradyuman Sir, CrossFit Aurangabad, Gym free trial pass">
+  <meta name="author" content="P&P Fitness">
+  <link rel="canonical" href="https://pandpfitness.in">
+
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="P&P Fitness | Transform Your Body. Elevate Your Life.">
+  <meta property="og:description" content="Chhatrapati Sambhajinagar's top-rated gym at Bajrang Chowk, CIDCO N-8. 4.7★ (110+ Google Reviews). Air-conditioned floor, Olympic weights, personal coaching.">
+  <meta property="og:image" content="./assets/logo.png">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="./assets/logo.png">
+
+  <!-- Google Fonts: Bebas Neue, Montserrat, Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=Montserrat:ital,wght@0,500;0,600;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              red: '#E53935',
+              redHover: '#DC2626',
+              redGlow: 'rgba(229, 57, 53, 0.45)',
+              dark: '#0A0C10',
+              surface: '#0F1218',
+              card: '#151922',
+              cardHover: '#1B202B',
+              border: 'rgba(255, 255, 255, 0.08)',
+            }
+          },
+          fontFamily: {
+            bebas: ['"Bebas Neue"', 'sans-serif'],
+            montserrat: ['"Montserrat"', 'sans-serif'],
+            sans: ['"Inter"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Canvas Confetti Library for Celebratory Booking Modal -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Custom Stylesheet -->
+  <script type="module" crossorigin src="./assets/index.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index.css">
+</head>
+<body class="bg-[#0A0C10] text-slate-100 antialiased selection:bg-red-600 selection:text-white">
+
+  <!-- ======================================================================
+       ACTIVE PASS NOTIFICATION BAR (Shown if user has already booked)
+       ====================================================================== -->
+  <div id="activePassBanner" class="hidden bg-gradient-to-r from-red-950 via-red-900 to-black border-b border-red-500/40 px-4 py-2 text-center text-xs md:text-sm text-white sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex items-center justify-center gap-3">
+      <span class="inline-flex items-center px-2 py-0.5 rounded bg-red-600 text-white font-bold text-xs uppercase tracking-wider">Active Pass</span>
+      <span>You have a reserved Trial Pass: <strong id="bannerPassCode" class="text-red-400 font-mono tracking-wider">#PPF-0000</strong></span>
+      <button id="bannerViewPassBtn" class="underline hover:text-red-300 font-semibold ml-2">View Ticket →</button>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       TOP UTILITY BAR: Gym Location & Live Status Pill
+       ====================================================================== -->
+  <div class="bg-[#07090D] border-b border-white/5 text-slate-400 text-xs py-2 px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div class="flex items-center gap-3 flex-wrap justify-center sm:justify-start">
+        <span class="flex items-center gap-1.5 text-slate-300">
+          <i class="fa-solid fa-location-dot text-red-500"></i>
+          <span>Bajrang Chowk, CIDCO N-8, Chhatrapati Sambhajinagar</span>
+        </span>
+        <span class="hidden md:inline text-white/20">|</span>
+        <span class="flex items-center gap-1.5 text-slate-300">
+          <i class="fa-solid fa-phone text-red-500"></i>
+          <a href="tel:+919356560838" class="hover:text-white transition-colors">+91 93565 60838</a>
+        </span>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <!-- Live Open / Closed Badge (Dynamically populated by js/app.js) -->
+        <div id="navLivePill" class="hidden md:inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-red-950/40 text-red-400 border border-red-500/30">
+          <span class="inline-block w-2 h-2 rounded-full bg-red-500 mr-2"></span>
+          <span>Calculating Status...</span>
+        </div>
+
+        <div class="flex items-center gap-2 text-slate-400">
+          <span>Mon–Sat: 6AM–11AM & 5PM–10PM</span>
+          <span class="text-white/20">•</span>
+          <span class="text-red-400 font-medium">Sunday Rest</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       STICKY MAIN NAVIGATION
+       ====================================================================== -->
+  <header id="mainHeader" class="sticky top-0 z-40 w-full transition-all duration-300 bg-[#0A0C10]/90 backdrop-blur-md border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo (Embedding Official Logo Asset) -->
+      <a href="#hero" class="group flex items-center gap-3.5 focus:outline-none">
+        <!-- Official Logo Container in Luxury Badge -->
+        <div class="relative w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white p-1 flex items-center justify-center shadow-lg shadow-red-900/20 ring-1 ring-white/30 transition-transform duration-300 group-hover:scale-105 overflow-hidden">
+          <img src="./assets/logo.png" alt="P&P Fitness Official Logo - CIDCO N 8" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='./logo.png';">
+        </div>
+        
+        <!-- Brand Typography -->
+        <div class="flex flex-col">
+          <div class="font-bebas text-2xl sm:text-3xl tracking-wider text-white leading-none">
+            P&amp;P <span class="text-red-500">FITNESS</span>
+          </div>
+          <div class="text-[9px] sm:text-[10px] font-bold text-slate-400 uppercase tracking-widest leading-tight">
+            CIDCO N-8 • CHH. SAMBHAJINAGAR
+          </div>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden lg:flex items-center gap-7 text-sm font-medium text-slate-300">
+        <a href="#programs" class="hover:text-red-500 transition-colors py-1">Programs &amp; Facilities</a>
+        <a href="#schedule" class="hover:text-red-500 transition-colors py-1">Live Schedule</a>
+        <a href="#booking" class="text-red-400 hover:text-red-300 font-semibold transition-colors py-1">Free Trial Pass</a>
+        <a href="#pricing" class="hover:text-red-500 transition-colors py-1">Membership Plans</a>
+        <a href="#reviews" class="hover:text-red-500 transition-colors py-1">Member Reviews</a>
+        <a href="#calculator" class="hover:text-red-500 transition-colors py-1">BMI &amp; Protein Tool</a>
+        <a href="#location" class="hover:text-red-500 transition-colors py-1">Location &amp; Map</a>
+      </nav>
+
+      <!-- Desktop Action CTAs -->
+      <div class="hidden sm:flex items-center gap-3">
+        <!-- WhatsApp Quick Chat -->
+        <a href="https://wa.me/919356560838?text=Hi%20P%26P%20Fitness%2C%20I%20am%20interested%20in%20joining!" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="p-2.5 rounded-xl bg-white/5 hover:bg-emerald-600/20 border border-white/10 hover:border-emerald-500/40 text-emerald-400 transition-all flex items-center justify-center"
+           title="WhatsApp Desk">
+          <i class="fa-brands fa-whatsapp text-lg"></i>
+        </a>
+
+        <!-- Primary Trial Pass Button -->
+        <a href="#booking" class="relative group overflow-hidden px-5 py-2.5 rounded-xl bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-bold text-sm tracking-wide shadow-lg shadow-red-900/40 border border-red-500/30 transition-all duration-300 hover:shadow-red-600/50 hover:scale-[1.02]">
+          <span class="relative z-10 flex items-center gap-2">
+            <i class="fa-solid fa-ticket"></i>
+            <span>Book Free Trial</span>
+          </span>
+          <span class="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent"></span>
+        </a>
+      </div>
+
+      <!-- Mobile Hamburger Button -->
+      <button id="mobileMenuBtn" aria-label="Open Mobile Menu" class="lg:hidden p-2 rounded-xl bg-white/5 border border-white/10 text-white focus:outline-none">
+        <i class="fa-solid fa-bars text-xl"></i>
+      </button>
+
+    </div>
+  </header>
+
+  <!-- ======================================================================
+       MOBILE SLIDEOUT MENU DRAWER
+       ====================================================================== -->
+  <div id="mobileMenuDrawer" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl -translate-x-full transition-transform duration-300 flex flex-col p-6 overflow-y-auto">
+    <div class="flex items-center justify-between pb-6 border-b border-white/10">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-white p-1">
+          <img src="./assets/logo.png" alt="P&P Fitness" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='./logo.png';">
+        </div>
+        <div class="font-bebas text-2xl text-white tracking-wider">
+          P&amp;P <span class="text-red-500">FITNESS</span>
+        </div>
+      </div>
+      <button id="mobileMenuClose" aria-label="Close Mobile Menu" class="p-2 text-slate-400 hover:text-white">
+        <i class="fa-solid fa-xmark text-2xl"></i>
+      </button>
+    </div>
+
+    <nav class="flex flex-col gap-4 py-8 text-lg font-medium text-slate-200">
+      <a href="#hero" class="mobile-nav-link hover:text-red-500 py-1">Home</a>
+      <a href="#booking" class="mobile-nav-link text-red-400 font-bold py-1">🎟️ Book Free 1-Day Trial</a>
+      <a href="#programs" class="mobile-nav-link hover:text-red-500 py-1">Programs &amp; Facilities</a>
+      <a href="#schedule" class="mobile-nav-link hover:text-red-500 py-1">Gym Timings &amp; Schedule</a>
+      <a href="#pricing" class="mobile-nav-link hover:text-red-500 py-1">Membership Packages</a>
+      <a href="#reviews" class="mobile-nav-link hover:text-red-500 py-1">Member Transformations &amp; Reviews</a>
+      <a href="#calculator" class="mobile-nav-link hover:text-red-500 py-1">BMI &amp; Protein Calculator</a>
+      <a href="#location" class="mobile-nav-link hover:text-red-500 py-1">Location &amp; Directions</a>
+    </nav>
+
+    <div class="mt-auto pt-6 border-t border-white/10 flex flex-col gap-3">
+      <a href="#booking" class="mobile-nav-link w-full py-3 rounded-xl bg-red-600 text-white font-bold text-center">
+        Claim Free Workout Pass
+      </a>
+      <a href="https://wa.me/919356560838?text=Hi%20P%26P%20Fitness%2C%20I%20am%20interested%20in%20joining!" 
+         target="_blank" 
+         class="w-full py-3 rounded-xl bg-emerald-600 text-white font-bold text-center flex items-center justify-center gap-2">
+        <i class="fa-brands fa-whatsapp text-lg"></i>
+        <span>Chat on WhatsApp (+91 93565 60838)</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       HERO SECTION (High-Energy Athletic Aesthetic + Unisex Imagery)
+       ====================================================================== -->
+  <section id="hero" class="relative min-h-[92vh] flex items-center justify-center pt-8 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-radial-vignette">
+    
+    <!-- Background Athletic Atmosphere Overlay -->
+    <div class="absolute inset-0 bg-cover bg-center opacity-25 mix-blend-luminosity filter contrast-125" 
+         style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1600&auto=format&fit=crop');">
+    </div>
+
+    <!-- Red Gradient Glow Orbs -->
+    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-96 h-96 bg-red-600/15 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="absolute bottom-10 right-10 w-72 h-72 bg-red-800/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+    <div class="relative max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Hero Left: Content & Badges -->
+      <div class="lg:col-span-7 flex flex-col text-left space-y-6">
+        
+        <!-- Local Badge -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-950/60 border border-red-500/30 text-red-400 text-xs sm:text-sm font-semibold w-max shadow-md shadow-red-950/50">
+          <span class="flex h-2 w-2 relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
+          </span>
+          <span>BAJRANG CHOWK • CIDCO N-8 • CHH. SAMBHAJINAGAR</span>
+        </div>
+
+        <!-- Main Athletic Headline -->
+        <h1 class="font-bebas text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight text-white uppercase leading-[0.92]">
+          TRANSFORM YOUR BODY. <br>
+          <span class="text-gradient-fire">ELEVATE YOUR LIFE.</span>
+        </h1>
+
+        <!-- Subheadline -->
+        <p class="text-base sm:text-lg lg:text-xl text-slate-300 max-w-2xl font-normal leading-relaxed">
+          Chhatrapati Sambhajinagar's top-rated fitness and strength training facility at Bajrang Chowk. Premium heavy-duty equipment, certified coaching mentored by Pradyuman Sir, and a welcoming unisex community built for real results.
+        </p>
+
+        <!-- Social Proof Counters / Key Badges -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 py-2 pt-1">
+          <div class="glass-card p-3 rounded-2xl border border-white/10 hover:border-red-500/30 transition-all text-center">
+            <div class="text-amber-400 text-lg font-bold flex items-center justify-center gap-1">
+              <i class="fa-solid fa-star"></i> 4.7/5
+            </div>
+            <div class="text-[11px] text-slate-400 mt-0.5 font-medium">110+ Google Reviews</div>
+          </div>
+
+          <div class="glass-card p-3 rounded-2xl border border-white/10 hover:border-red-500/30 transition-all text-center">
+            <div class="text-white text-lg font-bold font-bebas tracking-wide">
+              500+
+            </div>
+            <div class="text-[11px] text-slate-400 mt-0.5 font-medium">Transformations</div>
+          </div>
+
+          <div class="glass-card p-3 rounded-2xl border border-white/10 hover:border-red-500/30 transition-all text-center">
+            <div class="text-red-400 text-lg font-bold">
+              <i class="fa-solid fa-snowflake"></i> 100%
+            </div>
+            <div class="text-[11px] text-slate-400 mt-0.5 font-medium">Air-Conditioned</div>
+          </div>
+
+          <div class="glass-card p-3 rounded-2xl border border-white/10 hover:border-red-500/30 transition-all text-center">
+            <div class="text-white text-lg font-bold font-bebas tracking-wide">
+              CROSSFIT
+            </div>
+            <div class="text-[11px] text-slate-400 mt-0.5 font-medium">&amp; Strength Zones</div>
+          </div>
+        </div>
+
+        <!-- Dual CTAs -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+          <!-- Primary Trial Button -->
+          <a href="#booking" class="px-8 py-4 rounded-2xl bg-gradient-to-r from-red-600 via-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-extrabold text-base tracking-wide shadow-xl shadow-red-950/60 border border-red-500/40 transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-3 group">
+            <i class="fa-solid fa-bolt text-red-200 group-hover:scale-125 transition-transform"></i>
+            <span>Claim 1-Day Free Workout Pass</span>
+            <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+          </a>
+
+          <!-- Secondary Pricing Button -->
+          <a href="#pricing" class="px-7 py-4 rounded-2xl bg-white/5 hover:bg-white/10 text-white font-semibold text-base border border-white/15 hover:border-white/30 transition-all flex items-center justify-center gap-2">
+            <i class="fa-solid fa-tags text-slate-400"></i>
+            <span>Explore Membership Plans</span>
+          </a>
+        </div>
+
+        <!-- Trust Mini Tags -->
+        <div class="flex items-center gap-6 text-xs text-slate-400 pt-1">
+          <span class="flex items-center gap-1.5">
+            <i class="fa-solid fa-shield-halved text-red-500"></i> No Credit Card Required
+          </span>
+          <span class="flex items-center gap-1.5">
+            <i class="fa-solid fa-person-chalkboard text-red-500"></i> Floor Coach Included
+          </span>
+          <span class="flex items-center gap-1.5">
+            <i class="fa-solid fa-venus-mars text-red-500"></i> Unisex Friendly &amp; Safe
+          </span>
+        </div>
+
+      </div>
+
+      <!-- Hero Right: High-Impact Visual Card showcasing Male & Female Athletes (Matching Logo Tone) -->
+      <div class="lg:col-span-5 relative">
+        <div class="relative mx-auto max-w-md lg:max-w-none">
+          
+          <!-- Outer Glow Border Container -->
+          <div class="relative rounded-3xl p-1 bg-gradient-to-b from-red-600/40 via-red-900/20 to-white/5 shadow-2xl shadow-red-950/50">
+            <div class="relative rounded-[22px] overflow-hidden bg-[#11141C]">
+              
+              <!-- Curated Unisex Fitness Athletes Image (Reflecting Male & Female Silhouettes in Logo) -->
+              <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1000&auto=format&fit=crop" 
+                   alt="P&P Fitness Athletes Strength & Conditioning" 
+                   class="w-full h-[480px] object-cover object-center filter brightness-95 contrast-110">
+              
+              <!-- Subtle Dark Gradient Scrim -->
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0A0C10] via-black/25 to-transparent"></div>
+
+              <!-- Top Badges Container: Stacks vertically on mobile (< 640px) and separates horizontally on larger screens -->
+              <div class="absolute top-4 inset-x-4 z-20 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2.5 pointer-events-none">
+                
+                <!-- Primary Floating Badge: Pradyuman Sir's Mentorship -->
+                <div class="pointer-events-auto bg-[#0A0C10]/90 backdrop-blur-md border border-red-500/40 px-3.5 py-2 sm:py-2.5 rounded-2xl shadow-xl flex items-center gap-3 w-fit">
+                  <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-red-600/20 text-red-500 flex items-center justify-center font-bold text-sm sm:text-base shrink-0">
+                    <i class="fa-solid fa-dumbbell"></i>
+                  </div>
+                  <div>
+                    <div class="text-xs font-bold text-white leading-tight">Pradyuman Sir's Mentorship</div>
+                    <div class="text-[10px] text-slate-300 font-medium">Form Guidance &amp; Tailored Routine</div>
+                  </div>
+                </div>
+
+                <!-- Status Pill Badge: P&P Elite Floor -->
+                <div class="pointer-events-auto bg-[#0A0C10]/85 backdrop-blur-md px-3 py-1.5 rounded-full border border-red-500/30 flex items-center gap-2 shadow-lg w-fit self-start sm:self-auto">
+                  <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                  <span class="text-xs font-bold text-white tracking-wide uppercase">P&amp;P Elite Floor</span>
+                </div>
+
+              </div>
+
+              <!-- Floating Bottom Info Box: Bajrang Chowk Hub (Neatly positioned with clean padding & spacing) -->
+              <div class="absolute bottom-4 inset-x-4 z-20 p-4 rounded-2xl bg-[#0A0C10]/90 backdrop-blur-md border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-2xl">
+                <div class="space-y-0.5">
+                  <div class="text-xs font-bold text-red-400 uppercase tracking-wider flex items-center gap-1.5">
+                    <i class="fa-solid fa-location-dot text-red-500"></i>
+                    <span>Bajrang Chowk Hub • CIDCO N-8</span>
+                  </div>
+                  <div class="text-sm font-bold text-white">Full Unisex Strength &amp; Cardio</div>
+                  <div class="text-[11px] text-slate-300">Olympic Barbells • 40kg Dumbbells • CrossFit Zone</div>
+                </div>
+                <div class="flex items-center sm:flex-col sm:items-end justify-between border-t sm:border-t-0 border-white/10 pt-2 sm:pt-0 shrink-0">
+                  <span class="text-[10px] text-slate-400 uppercase font-semibold">Daily Shifts</span>
+                  <span class="text-xs sm:text-sm font-mono font-bold text-emerald-400">10 Hrs Active</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       INTERACTIVE ON-PAGE BOOKING ENGINE (PROMINENT RIGHT BELOW HERO)
+       Core High-Converting Feature with Real-time Slots, Date Check & WhatsApp Link
+       ====================================================================== -->
+  <section id="booking" class="relative py-20 px-4 sm:px-6 lg:px-8 bg-[#0D1017] border-y border-white/5 bg-grid-pattern">
+    
+    <div class="max-w-4xl mx-auto">
+      
+      <!-- Section Header -->
+      <div class="text-center mb-10 space-y-3">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-950/50 border border-red-500/30 text-red-400 text-xs font-bold uppercase tracking-widest">
+          <i class="fa-solid fa-sparkles text-red-400"></i>
+          <span>Instant Free Workout Access</span>
+        </div>
+        <h2 class="font-bebas text-4xl sm:text-6xl text-white tracking-wide uppercase">
+          BOOK YOUR FREE <span class="text-red-500">1-DAY WORKOUT TRIAL</span>
+        </h2>
+        <p class="text-slate-300 text-sm sm:text-base max-w-xl mx-auto">
+          Experience the floor, meet the trainers, and test the equipment with zero commitments. Your pass is confirmed immediately.
+        </p>
+      </div>
+
+      <!-- Main Booking Engine Glass Card -->
+      <div class="relative glass-card rounded-3xl p-6 sm:p-10 border border-red-500/30 shadow-2xl shadow-red-950/30">
+        
+        <!-- Red Corner Accent -->
+        <div class="absolute -top-3 -right-3 px-4 py-1 rounded-full bg-red-600 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-red-950/60 flex items-center gap-1.5">
+          <i class="fa-solid fa-fire"></i>
+          <span>Free Pass • ₹0</span>
+        </div>
+
+        <form id="trialBookingForm" class="space-y-8" novalidate>
+          
+          <!-- Step 1: Personal Details -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <!-- Full Name -->
+            <div class="space-y-2">
+              <label for="userName" class="block text-xs font-bold text-slate-300 uppercase tracking-wider">
+                Full Name <span class="text-red-500">*</span>
+              </label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                  <i class="fa-solid fa-user"></i>
+                </div>
+                <input type="text" id="userName" name="userName" required placeholder="e.g. Rahul Sharma"
+                       class="w-full pl-10 pr-4 py-3.5 rounded-xl bg-black/60 border border-white/10 focus:border-red-500 focus:ring-1 focus:ring-red-500 text-white placeholder-slate-500 text-sm transition-all outline-none">
+              </div>
+            </div>
+
+            <!-- Mobile Phone with +91 Prefix -->
+            <div class="space-y-2">
+              <label for="userPhone" class="block text-xs font-bold text-slate-300 uppercase tracking-wider">
+                Mobile Number (WhatsApp) <span class="text-red-500">*</span>
+              </label>
+              <div class="relative flex rounded-xl bg-black/60 border border-white/10 focus-within:border-red-500 focus-within:ring-1 focus-within:ring-red-500 transition-all overflow-hidden">
+                <span class="inline-flex items-center px-3.5 bg-white/5 border-r border-white/10 text-slate-400 font-mono text-sm font-semibold select-none">
+                  +91
+                </span>
+                <input type="tel" id="userPhone" name="userPhone" required maxlength="10" placeholder="98765 43210"
+                       class="w-full px-3.5 py-3.5 bg-transparent text-white placeholder-slate-500 text-sm font-mono tracking-wider outline-none">
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2: Fitness Goal (Interactive Pill Selection) -->
+          <div class="space-y-3">
+            <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider">
+              Select Your Primary Fitness Goal <span class="text-red-500">*</span>
+            </label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <!-- Goal 1 -->
+              <div>
+                <input type="radio" id="goal1" name="fitnessGoal" value="Weight Loss / Fat Burn" class="hidden goal-radio" checked>
+                <label for="goal1" class="cursor-pointer block text-center p-3.5 rounded-xl border border-white/10 bg-black/40 hover:border-red-500/50 transition-all text-xs sm:text-sm font-medium text-slate-300">
+                  <div class="text-lg mb-1">🔥</div>
+                  <span>Weight Loss &amp; Fat Burn</span>
+                </label>
+              </div>
+
+              <!-- Goal 2 -->
+              <div>
+                <input type="radio" id="goal2" name="fitnessGoal" value="Muscle Building & Hypertrophy" class="hidden goal-radio">
+                <label for="goal2" class="cursor-pointer block text-center p-3.5 rounded-xl border border-white/10 bg-black/40 hover:border-red-500/50 transition-all text-xs sm:text-sm font-medium text-slate-300">
+                  <div class="text-lg mb-1">🦾</div>
+                  <span>Muscle Building &amp; Size</span>
+                </label>
+              </div>
+
+              <!-- Goal 3 -->
+              <div>
+                <input type="radio" id="goal3" name="fitnessGoal" value="CrossFit & Functional Fitness" class="hidden goal-radio">
+                <label for="goal3" class="cursor-pointer block text-center p-3.5 rounded-xl border border-white/10 bg-black/40 hover:border-red-500/50 transition-all text-xs sm:text-sm font-medium text-slate-300">
+                  <div class="text-lg mb-1">⚡</div>
+                  <span>CrossFit &amp; Functional</span>
+                </label>
+              </div>
+
+              <!-- Goal 4 -->
+              <div>
+                <input type="radio" id="goal4" name="fitnessGoal" value="General Health & Stamina" class="hidden goal-radio">
+                <label for="goal4" class="cursor-pointer block text-center p-3.5 rounded-xl border border-white/10 bg-black/40 hover:border-red-500/50 transition-all text-xs sm:text-sm font-medium text-slate-300">
+                  <div class="text-lg mb-1">🏃</div>
+                  <span>General Stamina &amp; Health</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3: Preferred Date Picker with Sunday Check -->
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <label for="trialDate" class="block text-xs font-bold text-slate-300 uppercase tracking-wider">
+                Preferred Trial Date (Mon–Sat) <span class="text-red-500">*</span>
+              </label>
+              <div class="flex items-center gap-1.5 text-xs">
+                <button type="button" data-days="0" class="quick-date-chip px-2.5 py-1 rounded-md bg-white/5 hover:bg-red-600/30 border border-white/10 text-slate-300 font-medium">Today</button>
+                <button type="button" data-days="1" class="quick-date-chip px-2.5 py-1 rounded-md bg-white/5 hover:bg-red-600/30 border border-white/10 text-slate-300 font-medium">Tomorrow</button>
+                <button type="button" data-days="2" class="quick-date-chip px-2.5 py-1 rounded-md bg-white/5 hover:bg-red-600/30 border border-white/10 text-slate-300 font-medium">+2 Days</button>
+              </div>
+            </div>
+
+            <div class="relative">
+              <input type="date" id="trialDate" name="trialDate" required
+                     class="w-full px-4 py-3.5 rounded-xl bg-black/60 border border-white/10 focus:border-red-500 focus:ring-1 focus:ring-red-500 text-white text-sm outline-none transition-all cursor-pointer">
+            </div>
+
+            <!-- Sunday Warning (Auto-triggered if Sunday picked) -->
+            <div id="dateWarning" class="hidden p-3 rounded-xl bg-amber-950/60 border border-amber-500/40 text-amber-300 text-xs flex items-center gap-2">
+              <i class="fa-solid fa-triangle-exclamation text-amber-400 text-sm"></i>
+              <span><strong>Sunday is Gym Rest &amp; Recovery Day.</strong> P&amp;P Fitness is closed on Sundays. Please pick any day from Monday to Saturday!</span>
+            </div>
+          </div>
+
+          <!-- Step 4: Workout Time Slot (Segmented Toggle & Slot Radio Buttons) -->
+          <div class="space-y-4">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <label class="block text-xs font-bold text-slate-300 uppercase tracking-wider">
+                Select Workout Time Slot <span class="text-red-500">*</span>
+              </label>
+
+              <!-- Shift Segmented Toggle -->
+              <div class="inline-flex rounded-xl p-1 bg-black/60 border border-white/10 self-start sm:self-auto">
+                <label class="cursor-pointer">
+                  <input type="radio" name="shiftType" value="morning" class="hidden peer" checked>
+                  <span class="block px-3 py-1 text-xs font-semibold rounded-lg text-slate-400 peer-checked:bg-red-600 peer-checked:text-white transition-all">
+                    🌅 Morning Shift
+                  </span>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="radio" name="shiftType" value="evening" class="hidden peer">
+                  <span class="block px-3 py-1 text-xs font-semibold rounded-lg text-slate-400 peer-checked:bg-red-600 peer-checked:text-white transition-all">
+                    🌆 Evening Shift
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Morning Batch Slots -->
+            <div id="morningSlots" class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div>
+                <input type="radio" id="slotM1" name="timeSlot" value="6:00 AM – 7:30 AM (Early Bird)" class="hidden slot-radio" checked>
+                <label for="slotM1" class="cursor-pointer block text-center p-3 rounded-xl border border-white/10 bg-black/40 text-xs sm:text-sm font-medium text-slate-300 transition-all">
+                  <span class="font-bold">6:00 AM – 7:30 AM</span>
+                  <div class="text-[10px] text-slate-400 mt-0.5">Early Bird Power Batch</div>
+                </label>
+              </div>
+
+              <div>
+                <input type="radio" id="slotM2" name="timeSlot" value="7:30 AM – 9:00 AM (Peak Morning)" class="hidden slot-radio">
+                <label for="slotM2" class="cursor-pointer block text-center p-3 rounded-xl border border-white/10 bg-black/40 text-xs sm:text-sm font-medium text-slate-300 transition-all">
+                  <span class="font-bold">7:30 AM – 9:00 AM</span>
+                  <div class="text-[10px] text-slate-400 mt-0.5">Peak Energy Batch</div>
+                </label>
+              </div>
+
+              <div>
+                <input type="radio" id="slotM3" name="timeSlot" value="9:00 AM – 11:00 AM (Mid-Morning)" class="hidden slot-radio">
+                <label for="slotM3" class="cursor-pointer block text-center p-3 rounded-xl border border-white/10 bg-black/40 text-xs sm:text-sm font-medium text-slate-300 transition-all">
+                  <span class="font-bold">9:00 AM – 11:00 AM</span>
+                  <div class="text-[10px] text-slate-400 mt-0.5">Mid-Morning Flow</div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Evening Batch Slots (Initially Hidden) -->
+            <div id="eveningSlots" class="hidden grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div>
+                <input type="radio" id="slotE1" name="timeSlot" value="5:00 PM – 6:30 PM (Early Evening)" class="hidden slot-radio">
+                <label for="slotE1" class="cursor-pointer block text-center p-3 rounded-xl border border-white/10 bg-black/40 text-xs sm:text-sm font-medium text-slate-300 transition-all">
+                  <span class="font-bold">5:00 PM – 6:30 PM</span>
+                  <div class="text-[10px] text-slate-400 mt-0.5">Post-Work Conditioning</div>
+                </label>
+              </div>
+
+              <div>
+                <input type="radio" id="slotE2" name="timeSlot" value="6:30 PM – 8:00 PM (Prime Evening)" class="hidden slot-radio">
+                <label for="slotE2" class="cursor-pointer block text-center p-3 rounded-xl border border-white/10 bg-black/40 text-xs sm:text-sm font-medium text-slate-300 transition-all">
+                  <span class="font-bold">6:30 PM – 8:00 PM</span>
+                  <div class="text-[10px] text-slate-400 mt-0.5">High-Voltage Prime Time</div>
+                </label>
+              </div>
+
+              <div>
+                <input type="radio" id="slotE3" name="timeSlot" value="8:00 PM – 10:00 PM (Night Lifters)" class="hidden slot-radio">
+                <label for="slotE3" class="cursor-pointer block text-center p-3 rounded-xl border border-white/10 bg-black/40 text-xs sm:text-sm font-medium text-slate-300 transition-all">
+                  <span class="font-bold">8:00 PM – 10:00 PM</span>
+                  <div class="text-[10px] text-slate-400 mt-0.5">Late Night Iron Session</div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 5: Submit Button -->
+          <div class="pt-2">
+            <button type="submit" id="submitTrialBtn" class="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-red-600 via-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-extrabold text-base sm:text-lg tracking-wider uppercase shadow-xl shadow-red-950/70 border border-red-500/40 transition-all duration-300 hover:scale-[1.01] flex items-center justify-center gap-3">
+              <i class="fa-solid fa-ticket"></i>
+              <span>Confirm My Free Trial Pass →</span>
+            </button>
+            <div class="text-center mt-3 text-xs text-slate-400 flex items-center justify-center gap-2">
+              <i class="fa-solid fa-lock text-slate-500"></i>
+              <span>Zero sales pressure. Free floor access &amp; trainer form guidance included.</span>
+            </div>
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       CELEBRATORY CONFIRMATION MODAL & VIP TRIAL PASS TICKET
+       ====================================================================== -->
+  <div id="passConfirmationModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md overflow-y-auto">
+    <div class="relative w-full max-w-lg my-8">
+      
+      <!-- Close Modal Button -->
+      <button onclick="closePassModal()" aria-label="Close Modal" class="absolute -top-3 -right-3 z-30 w-10 h-10 rounded-full bg-red-600 hover:bg-red-500 text-white flex items-center justify-center shadow-lg focus:outline-none">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <!-- VIP Pass Ticket Card Container -->
+      <div id="vipPassTicket" class="ticket-wrapper p-6 sm:p-8 space-y-6">
+        
+        <!-- Header with Official Logo -->
+        <div class="flex items-center justify-between pb-4 border-b border-white/10">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-xl bg-white p-1">
+              <img src="./assets/logo.png" alt="P&P Fitness Logo" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='./logo.png';">
+            </div>
+            <div>
+              <div class="font-bebas text-2xl text-white tracking-wide">P&amp;P <span class="text-red-500">FITNESS</span></div>
+              <div class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">OFFICIAL 1-DAY TRIAL PASS</div>
+            </div>
+          </div>
+          <div class="text-right">
+            <div class="text-[10px] text-slate-400 uppercase">PASS STATUS</div>
+            <div class="text-xs font-mono font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse"></span>
+              CONFIRMED
+            </div>
+          </div>
+        </div>
+
+        <!-- Congratulations Message -->
+        <div class="text-center space-y-1">
+          <h3 id="modalCongratTitle" class="font-bebas text-3xl text-white tracking-wide">
+            🎉 CONGRATULATIONS!
+          </h3>
+          <p class="text-xs text-slate-300">
+            Your complimentary VIP Workout Pass has been generated. Show this at the front desk when arriving!
+          </p>
+        </div>
+
+        <!-- Pass Key Details Grid -->
+        <div class="bg-black/60 rounded-2xl p-4 border border-white/10 space-y-3">
+          <div class="flex items-center justify-between text-xs pb-2 border-b border-white/5">
+            <span class="text-slate-400">Pass Reference ID:</span>
+            <span id="modalPassId" class="font-mono font-bold text-red-400 text-sm">#PPF-0000</span>
+          </div>
+
+          <div class="flex items-center justify-between text-xs pb-2 border-b border-white/5">
+            <span class="text-slate-400">Guest Athlete:</span>
+            <span id="modalUserName" class="font-bold text-white text-sm">Name</span>
+          </div>
+
+          <div class="flex items-center justify-between text-xs pb-2 border-b border-white/5">
+            <span class="text-slate-400">Reserved Date &amp; Slot:</span>
+            <span id="modalDateSlot" class="font-semibold text-slate-200 text-right">Date &amp; Slot</span>
+          </div>
+
+          <div class="flex items-center justify-between text-xs pb-2 border-b border-white/5">
+            <span class="text-slate-400">Fitness Focus:</span>
+            <span id="modalGoal" class="font-semibold text-red-300">Goal</span>
+          </div>
+
+          <div class="text-xs pt-1 space-y-1">
+            <div class="text-slate-400 font-medium">Gym Address:</div>
+            <div class="text-slate-200 font-semibold">
+              Bajrang Chowk, Shivdatta / Ganesh Housing Society, CIDCO N 8, Chh. Sambhajinagar
+            </div>
+          </div>
+        </div>
+
+        <!-- Ticket Perforation Line -->
+        <div class="ticket-notch-line my-4"></div>
+
+        <!-- Dual Action Buttons -->
+        <div class="space-y-3 pt-1">
+          <!-- WhatsApp Auto-Send Button (Official WhatsApp Green for high conversion) -->
+          <a id="modalWhatsAppBtn" href="#" target="_blank" rel="noopener noreferrer"
+             class="w-full py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm tracking-wide shadow-lg shadow-emerald-950/60 flex items-center justify-center gap-2 transition-all">
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+            <span>Send Details on WhatsApp to Gym Desk (+91 93565 60838)</span>
+          </a>
+
+          <div class="flex items-center gap-3">
+            <button onclick="printPassTicket()" class="flex-1 py-2.5 px-3 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-semibold border border-white/10 flex items-center justify-center gap-2">
+              <i class="fa-solid fa-print"></i>
+              <span>Save / Print Pass</span>
+            </button>
+            <button onclick="closePassModal()" class="flex-1 py-2.5 px-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 text-xs font-semibold border border-white/10">
+              Close Window
+            </button>
+          </div>
+        </div>
+
+        <!-- Pass Guidance Footer -->
+        <div class="text-center text-[11px] text-slate-500">
+          💡 Please carry sports shoes, a water bottle, and a gym towel. Locker &amp; changing rooms are provided free.
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ======================================================================
+       WHY CHOOSE P&P FITNESS (6-Card Grid of Features & Amenities)
+       ====================================================================== -->
+  <section id="programs" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-950/50 border border-red-500/30 text-red-400 text-xs font-bold uppercase tracking-widest">
+        <span>ELITE GYM INFRASTRUCTURE</span>
+      </div>
+      <h2 class="font-bebas text-4xl sm:text-6xl text-white tracking-wide uppercase">
+        WHY TRAIN AT <span class="text-red-500">P&amp;P FITNESS?</span>
+      </h2>
+      <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+        We built P&P Fitness with a single philosophy: give athletes, beginners, men, and women the cleanest, best-equipped, and most supportive fitness environment in CIDCO N-8.
+      </p>
+    </div>
+
+    <!-- 6-Card Responsive Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <!-- Card 1: Heavy-Duty Free Weights & Strength -->
+      <div class="glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-red-500/40 transition-all duration-300 group hover:-translate-y-1 flex flex-col">
+        <div class="h-48 overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=700&auto=format&fit=crop" 
+               alt="Heavy-Duty Strength & Free Weights Zone" 
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#151922] via-transparent to-transparent"></div>
+          <span class="absolute top-3 left-3 bg-red-600/90 text-white font-bold text-[10px] tracking-wider px-2.5 py-1 rounded-md uppercase">
+            Strength Core
+          </span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-3">
+          <div>
+            <h3 class="font-bebas text-2xl text-white tracking-wide uppercase group-hover:text-red-400 transition-colors">
+              Heavy-Duty Strength &amp; Free Weights Zone
+            </h3>
+            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mt-2">
+              High-grade Olympic barbells, dumbbell racks up to 40kg, dual cable crossovers, squat cages, and plate-loaded machines designed for maximum hypertrophy and pure power.
+            </p>
+          </div>
+          <div class="pt-2 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
+            <span>Barbells &amp; Dumbbells</span>
+            <span class="text-red-400 font-semibold">Up to 40 KG</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: Weekly CrossFit & HIIT Sessions -->
+      <div class="glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-red-500/40 transition-all duration-300 group hover:-translate-y-1 flex flex-col">
+        <div class="h-48 overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=700&auto=format&fit=crop" 
+               alt="Weekly CrossFit & HIIT Sessions" 
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#151922] via-transparent to-transparent"></div>
+          <span class="absolute top-3 left-3 bg-red-600/90 text-white font-bold text-[10px] tracking-wider px-2.5 py-1 rounded-md uppercase">
+            Endurance &amp; Stamina
+          </span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-3">
+          <div>
+            <h3 class="font-bebas text-2xl text-white tracking-wide uppercase group-hover:text-red-400 transition-colors">
+              Weekly CrossFit &amp; HIIT Sessions
+            </h3>
+            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mt-2">
+              Intense coach-led group conditioning sessions designed for stamina, cardiovascular endurance, explosive athletic power, and aggressive calorie burn.
+            </p>
+          </div>
+          <div class="pt-2 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
+            <span>Group Conditioning</span>
+            <span class="text-red-400 font-semibold">Weekly Schedules</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Expert Personal Training by Pradyuman Sir -->
+      <div class="glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-red-500/40 transition-all duration-300 group hover:-translate-y-1 flex flex-col">
+        <div class="h-48 overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=700&auto=format&fit=crop" 
+               alt="Expert Personal Training Mentorship" 
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#151922] via-transparent to-transparent"></div>
+          <span class="absolute top-3 left-3 bg-red-600/90 text-white font-bold text-[10px] tracking-wider px-2.5 py-1 rounded-md uppercase">
+            1-on-1 Mentorship
+          </span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-3">
+          <div>
+            <h3 class="font-bebas text-2xl text-white tracking-wide uppercase group-hover:text-red-400 transition-colors">
+              Expert Personal Training &amp; Form Guidance
+            </h3>
+            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mt-2">
+              Tailored workout splits and nutrition guidance mentored by Pradyuman Sir and certified floor trainers. Direct supervision to prevent injury and accelerate hypertrophy.
+            </p>
+          </div>
+          <div class="pt-2 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
+            <span>Head Mentor</span>
+            <span class="text-red-400 font-semibold">Pradyuman Sir</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: 100% Fully Air-Conditioned Floor -->
+      <div class="glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-red-500/40 transition-all duration-300 group hover:-translate-y-1 flex flex-col">
+        <div class="h-48 overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=700&auto=format&fit=crop" 
+               alt="Air-Conditioned & High-Ventilation Floor" 
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#151922] via-transparent to-transparent"></div>
+          <span class="absolute top-3 left-3 bg-red-600/90 text-white font-bold text-[10px] tracking-wider px-2.5 py-1 rounded-md uppercase">
+            Peak Climate Control
+          </span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-3">
+          <div>
+            <h3 class="font-bebas text-2xl text-white tracking-wide uppercase group-hover:text-red-400 transition-colors">
+              Air-Conditioned &amp; High-Ventilation Floor
+            </h3>
+            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mt-2">
+              Full climate-controlled workout environment with heavy-duty air exchangers. Stay cool and maintain peak heart-rate performance during intense summer workouts.
+            </p>
+          </div>
+          <div class="pt-2 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
+            <span>HVAC Conditioning</span>
+            <span class="text-red-400 font-semibold">100% Floor Coverage</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: Steam / Sauna & Secure Lockers -->
+      <div class="glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-red-500/40 transition-all duration-300 group hover:-translate-y-1 flex flex-col">
+        <div class="h-48 overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?q=80&w=700&auto=format&fit=crop" 
+               alt="Steam Sauna & Locker Facilities" 
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#151922] via-transparent to-transparent"></div>
+          <span class="absolute top-3 left-3 bg-red-600/90 text-white font-bold text-[10px] tracking-wider px-2.5 py-1 rounded-md uppercase">
+            Recovery &amp; Privacy
+          </span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-3">
+          <div>
+            <h3 class="font-bebas text-2xl text-white tracking-wide uppercase group-hover:text-red-400 transition-colors">
+              Steam, Sauna &amp; Private Lockers
+            </h3>
+            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mt-2">
+              Post-workout muscle recovery steam sessions that soothe joints and flush lactic acid, paired with clean change rooms and secure digital key lockers.
+            </p>
+          </div>
+          <div class="pt-2 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
+            <span>Locker Access</span>
+            <span class="text-red-400 font-semibold">Complimentary</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6: Spacious Parking at Bajrang Chowk -->
+      <div class="glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-red-500/40 transition-all duration-300 group hover:-translate-y-1 flex flex-col">
+        <div class="h-48 overflow-hidden relative">
+          <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=700&auto=format&fit=crop" 
+               alt="Spacious Parking & Prime Location CIDCO N-8" 
+               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#151922] via-transparent to-transparent"></div>
+          <span class="absolute top-3 left-3 bg-red-600/90 text-white font-bold text-[10px] tracking-wider px-2.5 py-1 rounded-md uppercase">
+            Prime CIDCO N-8
+          </span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between space-y-3">
+          <div>
+            <h3 class="font-bebas text-2xl text-white tracking-wide uppercase group-hover:text-red-400 transition-colors">
+              Spacious Parking &amp; Prime Hub Access
+            </h3>
+            <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mt-2">
+              Centrally situated right at Bajrang Chowk, CIDCO N 8. Safe and hassle-free two-wheeler and four-wheeler parking right in front of the fitness centre.
+            </p>
+          </div>
+          <div class="pt-2 border-t border-white/5 flex items-center justify-between text-xs text-slate-400">
+            <span>Parking Space</span>
+            <span class="text-red-400 font-semibold">2W &amp; 4W Dedicated</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ======================================================================
+       GYM TIMINGS & OPERATING SCHEDULE (With Real-Time IST Live Calculation)
+       ====================================================================== -->
+  <section id="schedule" class="py-20 px-4 sm:px-6 lg:px-8 bg-[#0C0E14] border-y border-white/5">
+    <div class="max-w-6xl mx-auto">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- Left Column: Timings Explanation & IST Clock -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-950/50 border border-red-500/30 text-red-400 text-xs font-bold uppercase tracking-wider">
+            <i class="fa-solid fa-clock"></i>
+            <span>Daily Floor Routine</span>
+          </div>
+
+          <h2 class="font-bebas text-4xl sm:text-5xl text-white tracking-wide uppercase">
+            OPERATING TIMINGS &amp; <span class="text-red-500">LIVE FLOOR STATUS</span>
+          </h2>
+
+          <p class="text-slate-400 text-sm leading-relaxed">
+            We operate in two disciplined high-energy shifts designed to cater to professionals, business owners, students, and athletes. Floor trainers are actively present on both shifts.
+          </p>
+
+          <!-- Live Status Card -->
+          <div class="glass-card p-6 rounded-2xl border border-white/10 space-y-4">
+            <div class="flex items-center justify-between flex-wrap gap-2">
+              <span class="text-xs font-semibold text-slate-400 uppercase">Live Real-Time Status</span>
+              <!-- Dynamically populated badge -->
+              <div id="scheduleLiveBadge" class="inline-flex items-center px-4 py-1.5 rounded-full text-sm font-bold bg-red-950/60 text-red-400 border border-red-500/40">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500 mr-2"></span>
+                <span>Calculating IST status...</span>
+              </div>
+            </div>
+
+            <div class="pt-2 border-t border-white/10 flex items-center justify-between">
+              <span class="text-xs text-slate-400">Current Time (IST):</span>
+              <span id="scheduleTimeDisplay" class="font-mono font-bold text-white text-base">--:-- -- IST</span>
+            </div>
+
+            <div id="scheduleNextEvent" class="text-xs text-red-300/90 italic bg-black/40 p-3 rounded-xl border border-white/5">
+              Calculating next shift timing...
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Sleek Schedule Widget Cards -->
+        <div class="lg:col-span-7 space-y-4">
+          
+          <!-- Monday to Saturday Schedule Card -->
+          <div class="p-6 rounded-2xl bg-gradient-to-br from-[#161B24] to-[#10131B] border border-red-500/30 shadow-xl space-y-6">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-red-600/20 text-red-500 flex items-center justify-center font-bold">
+                  <i class="fa-solid fa-calendar-check text-lg"></i>
+                </div>
+                <div>
+                  <h3 class="font-bebas text-2xl text-white tracking-wide">MONDAY TO SATURDAY</h3>
+                  <div class="text-xs text-slate-400">Regular Training Days (Morning &amp; Evening)</div>
+                </div>
+              </div>
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-950 text-emerald-400 border border-emerald-500/30">
+                Active 6 Days
+              </span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <!-- Shift 1 -->
+              <div class="p-4 rounded-xl bg-black/50 border border-white/5 space-y-1">
+                <div class="flex items-center justify-between text-xs font-semibold text-red-400 uppercase">
+                  <span>🌅 Morning Shift</span>
+                  <span>5 Hours</span>
+                </div>
+                <div class="text-xl font-bold font-mono text-white">06:00 AM – 11:00 AM</div>
+                <div class="text-[11px] text-slate-400">Cardio, Heavy Lifts, Early Conditioning</div>
+              </div>
+
+              <!-- Shift 2 -->
+              <div class="p-4 rounded-xl bg-black/50 border border-white/5 space-y-1">
+                <div class="flex items-center justify-between text-xs font-semibold text-red-400 uppercase">
+                  <span>🌆 Evening Shift</span>
+                  <span>5 Hours</span>
+                </div>
+                <div class="text-xl font-bold font-mono text-white">05:00 PM – 10:00 PM</div>
+                <div class="text-[11px] text-slate-400">CrossFit, Hypertrophy, High Energy Floor</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sunday Recovery Card -->
+          <div class="p-5 rounded-2xl bg-[#12151D] border border-white/10 flex items-center justify-between">
+            <div class="flex items-center gap-3.5">
+              <div class="w-10 h-10 rounded-xl bg-slate-800 text-slate-400 flex items-center justify-center">
+                <i class="fa-solid fa-bed text-lg"></i>
+              </div>
+              <div>
+                <h4 class="font-bebas text-xl text-white tracking-wide">SUNDAY: MUSCLE RECOVERY DAY</h4>
+                <div class="text-xs text-slate-400">Floor Closed for sanitization &amp; essential rest</div>
+              </div>
+            </div>
+            <span class="px-3 py-1 rounded-full text-xs font-bold bg-red-950 text-red-400 border border-red-500/30">
+              Closed
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       MEMBERSHIP PACKAGES (3-Tier Responsive Pricing with Duration Switch)
+       ====================================================================== -->
+  <section id="pricing" class="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+    
+    <div class="text-center max-w-3xl mx-auto mb-14 space-y-4">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-950/50 border border-red-500/30 text-red-400 text-xs font-bold uppercase tracking-widest">
+        <span>NO HIDDEN ADMISSION CHARGES</span>
+      </div>
+      <h2 class="font-bebas text-4xl sm:text-6xl text-white tracking-wide uppercase">
+        TRANSPARENT <span class="text-red-500">MEMBERSHIP TIERS</span>
+      </h2>
+      <p class="text-slate-400 text-sm sm:text-base leading-relaxed">
+        Invest in your body with honest, straightforward pricing. Choose your commitment duration to unlock higher savings and personal mentorship benefits.
+      </p>
+
+      <!-- Duration Toggle Switch (Monthly / Quarterly / 6 Months / Annual) -->
+      <div class="pt-4 flex justify-center">
+        <div class="inline-flex p-1.5 rounded-2xl bg-[#12151D] border border-white/10 flex-wrap gap-1 justify-center">
+          <button type="button" data-plan="monthly" class="pricing-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-slate-400 transition-all">
+            Monthly (1 Mo)
+          </button>
+          <button type="button" data-plan="quarterly" class="pricing-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-red-600 text-white shadow-lg shadow-red-950/40 transition-all">
+            Quarterly (3 Mo) 🔥
+          </button>
+          <button type="button" data-plan="biannual" class="pricing-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-slate-400 transition-all">
+            6 Months (Save 20%)
+          </button>
+          <button type="button" data-plan="annual" class="pricing-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-slate-400 transition-all">
+            Annual (365 Days)
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3-Tier Comparison Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+      
+      <!-- Tier 1: Silver Plan -->
+      <div class="glass-card rounded-3xl p-8 border border-white/10 flex flex-col justify-between hover:border-white/25 transition-all">
+        <div class="space-y-6">
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-bold uppercase tracking-widest text-slate-400">ESSENTIAL FLOOR</span>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-white/10 text-slate-300">Basic</span>
+          </div>
+
+          <div>
+            <h3 class="font-bebas text-3xl text-white tracking-wide">SILVER PLAN</h3>
+            <p class="text-xs text-slate-400 mt-1">Ideal for self-motivated lifters needing quality equipment.</p>
+          </div>
+
+          <div class="pt-2 pb-4 border-b border-white/10">
+            <div class="flex items-baseline gap-1">
+              <span id="priceSilver" class="text-4xl font-extrabold font-mono text-white">₹3,900</span>
+              <span id="periodSilver" class="text-xs text-slate-400 font-medium">/ 3 months</span>
+            </div>
+            <div class="text-[11px] text-slate-400 mt-1">₹1,300/month equivalent</div>
+          </div>
+
+          <!-- Feature List -->
+          <ul class="space-y-3 text-xs sm:text-sm text-slate-300">
+            <li class="flex items-center gap-3">
+              <i class="fa-solid fa-check text-red-500"></i>
+              <span>Full Gym Floor &amp; Cardio Machine Access</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="fa-solid fa-check text-red-500"></i>
+              <span>General Trainer Support &amp; Posture Guidance</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="fa-solid fa-check text-red-500"></i>
+              <span>Air-Conditioned Floor Workout</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="fa-solid fa-check text-red-500"></i>
+              <span>Locker Room &amp; Changing Facilities</span>
+            </li>
+            <li class="flex items-center gap-3 text-slate-500 line-through">
+              <i class="fa-solid fa-xmark"></i>
+              <span>Weekly CrossFit Masterclasses</span>
+            </li>
+            <li class="flex items-center gap-3 text-slate-500 line-through">
+              <i class="fa-solid fa-xmark"></i>
+              <span>Personal Diet Chart Mentorship</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pt-8">
+          <a id="waSilverBtn" 
+             href="https://wa.me/919356560838?text=Hi%20P%26P%20Fitness!%20I%20am%20interested%20in%20the%20Silver%20Plan%20at%20Bajrang%20Chowk." 
+             target="_blank"
+             class="w-full py-3.5 px-4 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs uppercase tracking-wider text-center block transition-all">
+            Inquire Silver via WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- Tier 2: Gold Plan (Most Popular - Crimson Highlight & Glow) -->
+      <div class="relative glass-card-active rounded-3xl p-8 border-2 border-red-500 flex flex-col justify-between shadow-2xl shadow-red-950/60 transform md:-translate-y-3">
+        
+        <!-- Most Popular Badge -->
+        <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full bg-gradient-to-r from-red-600 to-red-700 text-white font-extrabold text-xs uppercase tracking-widest shadow-md shadow-red-950/80 flex items-center gap-1.5">
+          <i class="fa-solid fa-crown text-amber-300"></i>
+          <span>MOST POPULAR CHOICE</span>
+        </div>
+
+        <div class="space-y-6">
+          <div class="flex justify-between items-center pt-2">
+            <span class="text-xs font-bold uppercase tracking-widest text-red-400">BEST VALUE VALUE PASS</span>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-red-600/30 text-red-300 border border-red-500/30">Save ₹1,000</span>
+          </div>
+
+          <div>
+            <h3 class="font-bebas text-3xl sm:text-4xl text-white tracking-wide">GOLD PLAN</h3>
+            <p class="text-xs text-slate-300 mt-1">Complete balance of strength, group CrossFit, and nutrition.</p>
+          </div>
+
+          <div class="pt-2 pb-4 border-b border-red-500/30">
+            <div class="flex items-baseline gap-1">
+              <span id="priceGold" class="text-5xl font-black font-mono text-white">₹3,800</span>
+              <span id="periodGold" class="text-xs text-slate-300 font-medium">/ 3 months</span>
+            </div>
+            <div class="text-[11px] text-red-400 font-semibold mt-1">₹1,266/month equivalent (Limited Slots)</div>
+          </div>
+
+          <!-- Feature List -->
+          <ul class="space-y-3 text-xs sm:text-sm text-slate-200">
+            <li class="flex items-center gap-3">
+              <i class="fa-solid fa-circle-check text-red-500"></i>
+              <span><strong>Full Access</strong> to Heavy Strength &amp; Cardio Floor</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="fa-solid fa-circle-check text-red-500"></i>
+              <span><strong>Weekly Coach-Led CrossFit &amp; HIIT Classes</strong></span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="fa-solid fa-circle-check text-red-500"></i>
+              <span>Bi-Weekly Body Composition &amp; BMI Tracking</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="fa-solid fa-circle-check text-red-500"></i>
+              <span>Basic Indian Macro &amp; Nutrition Checklist</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="fa-solid fa-circle-check text-red-500"></i>
+              <span>Free P&amp;P Protein Shaker Cup</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="fa-solid fa-circle-check text-red-500"></i>
+              <span>Locker, Changing Room &amp; Shower Access</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pt-8 space-y-2">
+          <a id="waGoldBtn" 
+             href="https://wa.me/919356560838?text=Hi%20P%26P%20Fitness!%20I%20am%20interested%20in%20the%20Gold%20Plan%20(Most%20Popular)%20at%20Bajrang%20Chowk." 
+             target="_blank"
+             class="w-full py-4 px-4 rounded-xl bg-gradient-to-r from-red-600 via-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-extrabold text-sm uppercase tracking-wider text-center block shadow-lg shadow-red-950/80 transition-all hover:scale-[1.02]">
+            Select Gold Plan via WhatsApp
+          </a>
+          <div class="text-center text-[10px] text-slate-400">Instant confirmation via gym front desk</div>
+        </div>
+      </div>
+
+      <!-- Tier 3: Platinum Transformation Plan -->
+      <div class="glass-card rounded-3xl p-8 border border-white/10 flex flex-col justify-between hover:border-red-500/30 transition-all">
+        <div class="space-y-6">
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-bold uppercase tracking-widest text-slate-400">TOTAL TRANSFORMATION</span>
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">VIP PT</span>
+          </div>
+
+          <div>
+            <h3 class="font-bebas text-3xl text-white tracking-wide">PLATINUM TRANSFORMATION</h3>
+            <p class="text-xs text-slate-400 mt-1">For athletes and serious individuals demanding peak results.</p>
+          </div>
+
+          <div class="pt-2 pb-4 border-b border-white/10">
+            <div class="flex items-baseline gap-1">
+              <span id="pricePlatinum" class="text-4xl font-extrabold font-mono text-white">₹5,500</span>
+              <span id="periodPlatinum" class="text-xs text-slate-400 font-medium">/ 3 months</span>
+            </div>
+            <div class="text-[11px] text-slate-400 mt-1">Complete Mentorship Suite</div>
+          </div>
+
+          <!-- Feature List -->
+          <ul class="space-y-3 text-xs sm:text-sm text-slate-300">
+            <li class="flex items-center gap-3">
+              <i class="fa-solid fa-check text-red-500"></i>
+              <span><strong>Complete All-Access Pass</strong> to All Gym Zones</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="fa-solid fa-check text-red-500"></i>
+              <span><strong>1-on-1 Personal Trainer Consultation</strong></span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="fa-solid fa-check text-red-500"></i>
+              <span>Customized Muscle Gain / Weight Loss Diet Plan</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="fa-solid fa-check text-red-500"></i>
+              <span>Steam &amp; Sauna Post-Workout Recovery Access</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="fa-solid fa-check text-red-500"></i>
+              <span>Complimentary Official P&amp;P Athletic T-Shirt</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i class="fa-solid fa-check text-red-500"></i>
+              <span>Priority Floor Locker Reservation</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="pt-8">
+          <a id="waPlatinumBtn" 
+             href="https://wa.me/919356560838?text=Hi%20P%26P%20Fitness!%20I%20am%20interested%20in%20the%20Platinum%20Transformation%20Plan%20at%20Bajrang%20Chowk." 
+             target="_blank"
+             class="w-full py-3.5 px-4 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs uppercase tracking-wider text-center block transition-all">
+            Inquire Platinum via WhatsApp
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ======================================================================
+       REAL MEMBER STORIES & REVIEWS (Rich Social Proof from Google Maps)
+       ====================================================================== -->
+  <section id="reviews" class="py-20 px-4 sm:px-6 lg:px-8 bg-[#0D0F16] border-y border-white/5">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-950/50 border border-red-500/30 text-red-400 text-xs font-bold uppercase tracking-wider">
+            <i class="fa-solid fa-certificate"></i>
+            <span>Verified Google Reviews</span>
+          </div>
+          <h2 class="font-bebas text-4xl sm:text-6xl text-white tracking-wide uppercase mt-2">
+            REAL MEMBERS. <span class="text-red-500">REAL TRANSFORMATIONS.</span>
+          </h2>
+          <p class="text-slate-400 text-sm max-w-xl">
+            See what active members from Bajrang Chowk, CIDCO N-8, and TV Centre say about training with us every single day.
+          </p>
+        </div>
+
+        <!-- Google Score Badge -->
+        <div class="glass-card px-5 py-3 rounded-2xl border border-white/10 flex items-center gap-4 self-start md:self-auto">
+          <div class="text-amber-400 text-3xl font-black font-mono">4.7</div>
+          <div>
+            <div class="flex text-amber-400 text-xs gap-1">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star-half-stroke"></i>
+            </div>
+            <div class="text-xs text-slate-300 font-semibold mt-0.5">Based on 110+ Google Reviews</div>
+            <div class="text-[10px] text-slate-500">CIDCO N-8, Chhatrapati Sambhajinagar</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 Testimonial Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Review 1: Rahul S. -->
+        <div class="glass-card rounded-2xl p-6 border border-white/10 flex flex-col justify-between hover:border-red-500/40 transition-all space-y-4">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex text-amber-400 text-xs gap-1">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <span class="text-[10px] text-slate-500">2 months ago</span>
+            </div>
+
+            <p class="text-slate-200 text-sm italic leading-relaxed">
+              "Best gym in CIDCO N 8! The vibe is energetic, machines are smooth, and <strong>Pradyuman sir pays attention to everyone's form</strong>. Lost 6 kgs in 2 months with proper diet and weight training!"
+            </p>
+          </div>
+
+          <div class="flex items-center gap-3 pt-3 border-t border-white/5">
+            <div class="w-10 h-10 rounded-full bg-red-600/20 text-red-400 flex items-center justify-center font-bold text-sm">
+              RS
+            </div>
+            <div>
+              <div class="text-sm font-bold text-white">Rahul S.</div>
+              <div class="text-[11px] text-slate-400">Verified Member • CIDCO N-8</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 2: Sneha P. -->
+        <div class="glass-card rounded-2xl p-6 border border-white/10 flex flex-col justify-between hover:border-red-500/40 transition-all space-y-4">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex text-amber-400 text-xs gap-1">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <span class="text-[10px] text-slate-500">3 weeks ago</span>
+            </div>
+
+            <p class="text-slate-200 text-sm italic leading-relaxed">
+              "Clean, air-conditioned, and no unnecessary crowding. Great community and safe environment for women lifters. The weekly CrossFit sessions are brutal in a good way!"
+            </p>
+          </div>
+
+          <div class="flex items-center gap-3 pt-3 border-t border-white/5">
+            <div class="w-10 h-10 rounded-full bg-red-600/20 text-red-400 flex items-center justify-center font-bold text-sm">
+              SP
+            </div>
+            <div>
+              <div class="text-sm font-bold text-white">Sneha P.</div>
+              <div class="text-[11px] text-slate-400">Verified Member • Fitness Enthusiast</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review 3: Amol K. -->
+        <div class="glass-card rounded-2xl p-6 border border-white/10 flex flex-col justify-between hover:border-red-500/40 transition-all space-y-4">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex text-amber-400 text-xs gap-1">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+              </div>
+              <span class="text-[10px] text-slate-500">1 month ago</span>
+            </div>
+
+            <p class="text-slate-200 text-sm italic leading-relaxed">
+              "Affordable fees for the kind of equipment and trainer support they provide. Dedicated parking at Bajrang Chowk is a huge plus because street parking in N-8 is usually tough."
+            </p>
+          </div>
+
+          <div class="flex items-center gap-3 pt-3 border-t border-white/5">
+            <div class="w-10 h-10 rounded-full bg-red-600/20 text-red-400 flex items-center justify-center font-bold text-sm">
+              AK
+            </div>
+            <div>
+              <div class="text-sm font-bold text-white">Amol K.</div>
+              <div class="text-[11px] text-slate-400">Verified Member • Strength Athlete</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       INTERACTIVE VALUE-ADD: UNISEX BMI & PROTEIN CALCULATOR TOOL
+       ====================================================================== -->
+  <section id="calculator" class="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+    <div class="glass-card rounded-3xl p-6 sm:p-10 border border-white/10">
+      
+      <div class="text-center max-w-2xl mx-auto mb-8 space-y-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/40 border border-red-500/30 text-red-400 text-xs font-bold uppercase tracking-wider">
+          <i class="fa-solid fa-calculator"></i>
+          <span>Free Athletic Tools</span>
+        </div>
+        <h3 class="font-bebas text-3xl sm:text-5xl text-white tracking-wide uppercase">
+          BODY COMPOSITION &amp; <span class="text-red-500">DAILY PROTEIN TARGET</span>
+        </h3>
+        <p class="text-xs sm:text-sm text-slate-400">
+          Calculate your baseline metrics, recommended hydration, and protein intake needed to crush your goals at P&P Fitness.
+        </p>
+      </div>
+
+      <form id="fitnessCalculatorForm" class="space-y-6">
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+          
+          <!-- Gender -->
+          <div>
+            <label class="block text-xs font-bold text-slate-300 uppercase mb-2">Gender</label>
+            <div class="flex rounded-xl bg-black/50 p-1 border border-white/10">
+              <label class="flex-1 text-center cursor-pointer">
+                <input type="radio" name="calcGender" value="male" class="hidden peer" checked>
+                <span class="block py-2 text-xs font-bold rounded-lg text-slate-400 peer-checked:bg-red-600 peer-checked:text-white transition-all">Male</span>
+              </label>
+              <label class="flex-1 text-center cursor-pointer">
+                <input type="radio" name="calcGender" value="female" class="hidden peer">
+                <span class="block py-2 text-xs font-bold rounded-lg text-slate-400 peer-checked:bg-red-600 peer-checked:text-white transition-all">Female</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Weight -->
+          <div>
+            <label for="calcWeight" class="block text-xs font-bold text-slate-300 uppercase mb-2">Weight (KG)</label>
+            <input type="number" id="calcWeight" value="70" min="30" max="200" step="0.5"
+                   class="w-full px-3.5 py-2.5 rounded-xl bg-black/50 border border-white/10 text-white text-sm outline-none focus:border-red-500">
+          </div>
+
+          <!-- Height -->
+          <div>
+            <label for="calcHeight" class="block text-xs font-bold text-slate-300 uppercase mb-2">Height (CM)</label>
+            <input type="number" id="calcHeight" value="172" min="120" max="230"
+                   class="w-full px-3.5 py-2.5 rounded-xl bg-black/50 border border-white/10 text-white text-sm outline-none focus:border-red-500">
+          </div>
+
+          <!-- Goal -->
+          <div>
+            <label for="calcGoal" class="block text-xs font-bold text-slate-300 uppercase mb-2">Primary Goal</label>
+            <select id="calcGoal" class="w-full px-3 py-2.5 rounded-xl bg-black/50 border border-white/10 text-white text-xs outline-none focus:border-red-500 cursor-pointer">
+              <option value="fat_loss">Fat Loss &amp; Shred</option>
+              <option value="muscle_gain" selected>Muscle Building (Hypertrophy)</option>
+              <option value="crossfit">CrossFit Endurance</option>
+              <option value="maintenance">Health &amp; Maintenance</option>
+            </select>
+          </div>
+
+        </div>
+
+        <div class="text-center">
+          <button type="submit" class="px-8 py-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs uppercase tracking-wider transition-all">
+            Calculate My Nutrition &amp; Workout Blueprint →
+          </button>
+        </div>
+      </form>
+
+      <!-- Calculator Results Box (Initially Hidden) -->
+      <div id="calcResults" class="hidden mt-8 pt-8 border-t border-white/10">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+          <div class="p-4 rounded-2xl bg-black/40 border border-white/5">
+            <div class="text-xs text-slate-400">Calculated BMI</div>
+            <div id="resBmi" class="font-mono text-2xl font-bold text-white mt-1">23.6</div>
+            <div id="resBmiCategory" class="text-[11px] text-emerald-400 mt-0.5">Normal Weight</div>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-black/40 border border-white/5">
+            <div class="text-xs text-slate-400">Daily Energy Target</div>
+            <div id="resCalories" class="font-mono text-2xl font-bold text-amber-400 mt-1">2,350 kcal</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">Estimated Intake</div>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-black/40 border border-white/5">
+            <div class="text-xs text-slate-400">Daily Protein Target</div>
+            <div id="resProtein" class="font-mono text-2xl font-bold text-red-400 mt-1">133 g</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">Muscle Synthesis</div>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-black/40 border border-white/5">
+            <div class="text-xs text-slate-400">Daily Water Goal</div>
+            <div id="resWater" class="font-mono text-2xl font-bold text-blue-400 mt-1">2.8 L</div>
+            <div class="text-[11px] text-slate-400 mt-0.5">Peak Hydration</div>
+          </div>
+        </div>
+
+        <div class="mt-4 p-4 rounded-xl bg-red-950/30 border border-red-500/20 text-center text-xs text-slate-300">
+          💡 Want a custom customized diet plan and split routine? Mentored by <strong>Pradyuman Sir</strong> included in the <a href="#pricing" class="text-red-400 underline font-bold">Gold &amp; Platinum Plans</a>!
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       LOCATION, CONTACT & INTERACTIVE MAP
+       ====================================================================== -->
+  <section id="location" class="py-20 px-4 sm:px-6 lg:px-8 bg-[#090B10] border-t border-white/5">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        
+        <!-- Left: Address & Direct Contacts -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-950/50 border border-red-500/30 text-red-400 text-xs font-bold uppercase tracking-wider">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <span>Prime Central CIDCO N-8 Hub</span>
+          </div>
+
+          <h2 class="font-bebas text-4xl sm:text-5xl text-white tracking-wide uppercase">
+            FIND P&amp;P FITNESS AT <span class="text-red-500">BAJRANG CHOWK</span>
+          </h2>
+
+          <p class="text-slate-400 text-sm leading-relaxed">
+            Conveniently situated right at the prime junction of Bajrang Chowk. Easy walking distance from Ganesh Housing Society, Shivdatta Society, and 2 minutes from TV Centre Road.
+          </p>
+
+          <div class="space-y-4 pt-2">
+            <!-- Full Address -->
+            <div class="flex items-start gap-4 p-4 rounded-2xl bg-black/50 border border-white/5">
+              <div class="w-10 h-10 rounded-xl bg-red-600/20 text-red-500 flex items-center justify-center shrink-0 mt-0.5">
+                <i class="fa-solid fa-location-dot text-lg"></i>
+              </div>
+              <div class="text-xs sm:text-sm">
+                <div class="font-bold text-white">P&amp;P Fitness Centre</div>
+                <div class="text-slate-300 mt-1">
+                  Bajrang Chowk, Shivdatta Housing Society / Ganesh Housing Society, CIDCO N 8, Chhatrapati Sambhajinagar (Aurangabad), Maharashtra 431003.
+                </div>
+              </div>
+            </div>
+
+            <!-- Phone Direct -->
+            <div class="flex items-center gap-4 p-4 rounded-2xl bg-black/50 border border-white/5">
+              <div class="w-10 h-10 rounded-xl bg-red-600/20 text-red-500 flex items-center justify-center shrink-0">
+                <i class="fa-solid fa-phone text-lg"></i>
+              </div>
+              <div class="text-xs sm:text-sm">
+                <div class="font-bold text-white">Direct Phone Call</div>
+                <a href="tel:+919356560838" class="text-red-400 font-mono font-bold hover:underline">+91 93565 60838</a>
+              </div>
+            </div>
+
+            <!-- WhatsApp & Instagram -->
+            <div class="grid grid-cols-2 gap-3">
+              <a href="https://wa.me/919356560838?text=Hi%20P%26P%20Fitness%2C%20I%20am%20interested%20in%20joining!" 
+                 target="_blank" 
+                 class="p-3.5 rounded-xl bg-emerald-950/40 border border-emerald-500/30 text-emerald-400 text-xs font-bold flex items-center justify-center gap-2 hover:bg-emerald-900/40 transition-all">
+                <i class="fa-brands fa-whatsapp text-base"></i>
+                <span>WhatsApp Desk</span>
+              </a>
+
+              <a href="https://instagram.com/p_and_p_fitness" 
+                 target="_blank" 
+                 rel="noopener noreferrer"
+                 class="p-3.5 rounded-xl bg-pink-950/40 border border-pink-500/30 text-pink-400 text-xs font-bold flex items-center justify-center gap-2 hover:bg-pink-900/40 transition-all">
+                <i class="fa-brands fa-instagram text-base"></i>
+                <span>@p_and_p_fitness</span>
+              </a>
+            </div>
+
+            <!-- Get Directions Button -->
+            <a href="https://www.google.com/maps/search/?api=1&query=P%26P+Fitness+Bajrang+Chowk+CIDCO+N+8+Chhatrapati+Sambhajinagar" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="w-full py-3.5 px-4 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs uppercase tracking-wider text-center flex items-center justify-center gap-2 border border-white/10 transition-all">
+              <i class="fa-solid fa-diamond-turn-right text-red-500"></i>
+              <span>Open in Google Maps / Get Directions</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Google Maps Frame & Landmarks -->
+        <div class="lg:col-span-7">
+          <div class="relative rounded-3xl overflow-hidden border border-white/10 bg-[#12151D] shadow-2xl h-[420px] sm:h-[460px]">
+            <!-- Embedded Google Map -->
+            <iframe 
+              title="P&P Fitness Location Bajrang Chowk CIDCO N 8"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15008.283838383838!2d75.3610!3d19.8850!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdba28b2e11894d%3A0x6bcf72c3d9a0d8e4!2sBajrang%20Chowk%2C%20N-8%2C%20CIDCO%2C%20Chhatrapati%20Sambhajinagar%2C%20Maharashtra%20431003!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
+              class="w-full h-full border-0 filter invert contrast-125 opacity-90 hover:opacity-100 transition-opacity" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+
+            <!-- Floating Overlay Card on Map -->
+            <div class="absolute bottom-4 left-4 right-4 sm:right-auto bg-[#0A0C10]/90 backdrop-blur-md p-4 rounded-2xl border border-white/10 max-w-sm">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-white p-1">
+                  <img src="./assets/logo.png" alt="P&P Fitness Logo" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='./logo.png';">
+                </div>
+                <div>
+                  <div class="text-xs font-bold text-white">P&amp;P FITNESS GYM</div>
+                  <div class="text-[11px] text-slate-300">Bajrang Chowk, CIDCO N-8</div>
+                  <div class="text-[10px] text-emerald-400 mt-0.5">Ample 2-Wheeler &amp; 4-Wheeler Parking</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================================
+       FOOTER (With Official Logo Badge, Quick Links & Copyright)
+       ====================================================================== -->
+  <footer class="bg-[#050608] border-t border-white/5 pt-16 pb-24 lg:pb-16 px-4 sm:px-6 lg:px-8 text-slate-400 text-xs">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/5">
+      
+      <!-- Brand & Mission (Featuring Official Logo) -->
+      <div class="space-y-4">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-xl bg-white p-1 shadow-md">
+            <img src="./assets/logo.png" alt="P&P Fitness Logo" class="w-full h-full object-contain" onerror="this.onerror=null; this.src='./logo.png';">
+          </div>
+          <div>
+            <div class="font-bebas text-2xl text-white tracking-wide">P&amp;P <span class="text-red-500">FITNESS</span></div>
+            <div class="text-[9px] font-bold text-slate-400 uppercase tracking-widest">CIDCO N-8 • CHH. SAMBHAJINAGAR</div>
+          </div>
+        </div>
+        <p class="text-xs text-slate-400 leading-relaxed">
+          Premier athletic fitness centre dedicated to transforming bodies through science-backed strength, intense CrossFit, and disciplined floor mentorship by Pradyuman Sir.
+        </p>
+        <div class="text-xs text-slate-300 font-semibold">
+          ⭐ 4.7/5 Rated Gym on Google Maps (110+ Reviews)
+        </div>
+      </div>
+
+      <!-- Quick Nav Links -->
+      <div class="space-y-3">
+        <h4 class="text-white font-bold uppercase tracking-wider text-xs">Explore Gym</h4>
+        <ul class="space-y-2">
+          <li><a href="#hero" class="hover:text-red-400 transition-colors">Home &amp; Showcase</a></li>
+          <li><a href="#booking" class="text-red-400 font-semibold hover:text-red-300">Claim Free 1-Day Trial Pass</a></li>
+          <li><a href="#programs" class="hover:text-red-400 transition-colors">Strength &amp; CrossFit Floor</a></li>
+          <li><a href="#schedule" class="hover:text-red-400 transition-colors">Gym Shift Timings</a></li>
+          <li><a href="#pricing" class="hover:text-red-400 transition-colors">Membership Fees &amp; Packages</a></li>
+          <li><a href="#reviews" class="hover:text-red-400 transition-colors">Member Transformation Reviews</a></li>
+          <li><a href="#calculator" class="hover:text-red-400 transition-colors">Unisex BMI &amp; Protein Calculator</a></li>
+        </ul>
+      </div>
+
+      <!-- Gym Operating Hours -->
+      <div class="space-y-3">
+        <h4 class="text-white font-bold uppercase tracking-wider text-xs">Shift Timings</h4>
+        <div class="space-y-2 text-slate-300">
+          <div>
+            <span class="text-white font-semibold">Monday – Saturday:</span>
+            <div class="text-[11px] text-slate-400">Morning: 06:00 AM – 11:00 AM</div>
+            <div class="text-[11px] text-slate-400">Evening: 05:00 PM – 10:00 PM</div>
+          </div>
+          <div class="pt-1">
+            <span class="text-red-400 font-semibold">Sunday:</span>
+            <div class="text-[11px] text-slate-400">Closed (Weekly Recovery &amp; Sanitization)</div>
+          </div>
+          <div class="pt-1 text-[11px] text-emerald-400 flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block"></span>
+            100% Fully Air-Conditioned Floor
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact & Social -->
+      <div class="space-y-3">
+        <h4 class="text-white font-bold uppercase tracking-wider text-xs">Contact Desk</h4>
+        <div class="space-y-2">
+          <div>
+            <span class="text-slate-400">Call / WhatsApp:</span>
+            <div class="font-mono text-white font-bold text-sm">
+              <a href="tel:+919356560838" class="hover:text-red-400">+91 93565 60838</a>
+            </div>
+          </div>
+          <div>
+            <span class="text-slate-400">Address:</span>
+            <div class="text-slate-300 text-xs mt-0.5">
+              Bajrang Chowk, Shivdatta / Ganesh Housing Society, CIDCO N-8, Chhatrapati Sambhajinagar, MH 431003.
+            </div>
+          </div>
+          <div class="pt-2 flex items-center gap-3">
+            <a href="https://wa.me/919356560838" target="_blank" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-emerald-600/30 text-emerald-400 flex items-center justify-center transition-colors">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <a href="https://instagram.com/p_and_p_fitness" target="_blank" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-pink-600/30 text-pink-400 flex items-center justify-center transition-colors">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Copyright & Disclaimer -->
+    <div class="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+      <div>
+        © 2026 P&amp;P Fitness Centre. All Rights Reserved. Designed for P&amp;P Fitness Community.
+      </div>
+      <div class="flex items-center gap-4">
+        <span>Bajrang Chowk • CIDCO N-8</span>
+        <span>•</span>
+        <a href="#hero" class="hover:text-white transition-colors">Back to Top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ======================================================================
+       FLOATING WHATSAPP BUTTON (Bottom Right with Pulse Animation & Tooltip)
+       ====================================================================== -->
+  <aside aria-label="WhatsApp Chat Widget" class="fixed bottom-20 sm:bottom-8 right-6 z-40 group">
+    <a href="https://wa.me/919356560838?text=Hi%20P%26P%20Fitness%2C%20I%20am%20interested%20in%20joining!" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       aria-label="Chat with P&P Fitness desk on WhatsApp"
+       class="relative w-14 h-14 rounded-full bg-[#25D366] text-white flex items-center justify-center shadow-2xl shadow-emerald-950/80 hover:scale-110 active:scale-95 transition-transform duration-300">
+      
+      <!-- Pulse Rings -->
+      <span class="absolute inset-0 rounded-full bg-[#25D366] opacity-75 animate-ping pointer-events-none"></span>
+
+      <!-- WhatsApp SVG Icon -->
+      <i class="fa-brands fa-whatsapp text-3xl relative z-10"></i>
+
+      <!-- Tooltip -->
+      <span class="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-black/90 text-white text-xs font-semibold px-3 py-1.5 rounded-xl whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-white/10 shadow-lg">
+        Chat with Gym Desk (+91 93565 60838)
+      </span>
+    </a>
+  </aside>
+
+  <!-- ======================================================================
+       STICKY MOBILE BOTTOM BAR (Visible only on Mobile & Small Tablets)
+       ====================================================================== -->
+  <aside aria-label="Mobile Quick Action Bar" class="lg:hidden fixed bottom-0 inset-x-0 z-40 bg-[#0A0C10]/95 backdrop-blur-lg border-t border-white/10 px-4 py-2.5 flex items-center justify-around gap-2">
+    <!-- Call Gym -->
+    <a href="tel:+919356560838" class="flex-1 py-2.5 px-2 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs flex items-center justify-center gap-2 border border-white/10">
+      <i class="fa-solid fa-phone text-red-500"></i>
+      <span>Call Gym</span>
+    </a>
+
+    <!-- Book Trial Button -->
+    <a href="#booking" class="flex-1 py-2.5 px-2 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-red-950">
+      <i class="fa-solid fa-ticket"></i>
+      <span>Free Pass</span>
+    </a>
+
+    <!-- WhatsApp Booking -->
+    <a href="https://wa.me/919356560838?text=Hi%20P%26P%20Fitness%2C%20I%20am%20interested%20in%20joining!" 
+       target="_blank" 
+       rel="noopener noreferrer"
+       class="flex-1 py-2.5 px-2 rounded-xl bg-[#25D366] text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-md">
+      <i class="fa-brands fa-whatsapp text-sm"></i>
+      <span>WhatsApp</span>
+    </a>
+  </aside>
+
+  <!-- Interactive JavaScript Engine -->
+</body>
+</html>

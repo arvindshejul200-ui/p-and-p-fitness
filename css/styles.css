@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&display=swap');
+
+:root {
+  --primary-red: #E53935;
+  --primary-red-hover: #DC2626;
+  --primary-red-glow: rgba(229, 57, 53, 0.45);
+  --dark-bg: #0A0C10;
+  --dark-surface: #0F1218;
+  --dark-card: #151922;
+  --dark-card-hover: #1C212E;
+  --dark-border: rgba(255, 255, 255, 0.08);
+  --dark-border-red: rgba(229, 57, 53, 0.3);
+  --text-primary: #FFFFFF;
+  --text-muted: #94A3B8;
+  --text-subtle: #64748B;
+  --whatsapp-green: #25D366;
+}
+
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--dark-bg);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-bebas {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 0.04em;
+}
+
+.font-montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0C10;
+}
+::-webkit-scrollbar-thumb {
+  background: #252B38;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-red);
+}
+
+/* Selection Color */
+::selection {
+  background: var(--primary-red);
+  color: #FFFFFF;
+}
+
+/* Red Gradients & Glows */
+.bg-gradient-red {
+  background: linear-gradient(135deg, #EF4444 0%, #DC2626 50%, #B91C1C 100%);
+}
+
+.bg-gradient-red-dark {
+  background: linear-gradient(180deg, rgba(229, 57, 53, 0.15) 0%, rgba(15, 18, 24, 0.95) 100%);
+}
+
+.glow-red-sm {
+  box-shadow: 0 0 15px rgba(229, 57, 53, 0.25);
+}
+
+.glow-red {
+  box-shadow: 0 0 25px rgba(229, 57, 53, 0.4);
+}
+
+.glow-red-lg {
+  box-shadow: 0 0 45px rgba(229, 57, 53, 0.5);
+}
+
+.text-gradient-red {
+  background: linear-gradient(135deg, #FFFFFF 30%, #EF4444 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-fire {
+  background: linear-gradient(135deg, #FF6B6B 0%, #E53935 60%, #DC2626 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+  background: rgba(21, 25, 34, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card:hover {
+  border-color: rgba(229, 57, 53, 0.35);
+}
+
+.glass-card-active {
+  background: rgba(26, 31, 42, 0.85);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(229, 57, 53, 0.4);
+  box-shadow: 0 10px 30px rgba(229, 57, 53, 0.15);
+}
+
+/* Animated Pulse Badge */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(229, 57, 53, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(229, 57, 53, 0);
+  }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+@keyframes pulse-green-ring {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+}
+
+.animate-pulse-green {
+  animation: pulse-green-ring 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+
+/* Subtle Shimmer Effect on CTA */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.btn-shimmer {
+  background-size: 200% auto;
+  transition: all 0.3s ease;
+}
+
+.btn-shimmer:hover {
+  background-position: right center;
+}
+
+/* Grid pattern background */
+.bg-grid-pattern {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.bg-radial-vignette {
+  background: radial-gradient(circle at 50% 30%, rgba(229, 57, 53, 0.12) 0%, rgba(10, 12, 16, 0.95) 70%);
+}
+
+/* Pass Ticket Cutouts & Styling */
+.ticket-wrapper {
+  position: relative;
+  background: linear-gradient(145deg, #161B24 0%, #0F1218 100%);
+  border: 1px solid rgba(229, 57, 53, 0.3);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.ticket-wrapper::before,
+.ticket-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 60%;
+  width: 24px;
+  height: 24px;
+  background-color: var(--dark-surface);
+  border-radius: 50%;
+  z-index: 10;
+}
+
+.ticket-wrapper::before {
+  left: -12px;
+  border-right: 1px solid rgba(229, 57, 53, 0.3);
+}
+
+.ticket-wrapper::after {
+  right: -12px;
+  border-left: 1px solid rgba(229, 57, 53, 0.3);
+}
+
+.ticket-notch-line {
+  border-top: 2px dashed rgba(255, 255, 255, 0.15);
+}
+
+/* Custom Radio / Chip Checked States */
+.goal-radio:checked + label {
+  background: rgba(229, 57, 53, 0.18);
+  border-color: #EF4444;
+  color: #FFFFFF;
+  box-shadow: 0 0 15px rgba(229, 57, 53, 0.3);
+}
+
+.slot-radio:checked + label {
+  background: #EF4444;
+  color: #FFFFFF;
+  border-color: #EF4444;
+  font-weight: 700;
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.4);
+}
+
+/* Print Styling for Pass */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #vipPassTicket, #vipPassTicket * {
+    visibility: visible;
+  }
+  #vipPassTicket {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background: #FFFFFF !important;
+    color: #000000 !important;
+  }
+}

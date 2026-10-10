@@ -332,21 +332,26 @@
               <!-- Subtle Dark Gradient Scrim -->
               <div class="absolute inset-0 bg-gradient-to-t from-[#0A0C10] via-black/25 to-transparent"></div>
 
-              <!-- Top-Left Floating Badge: Pradyuman Sir's Mentorship (No negative margins, proper z-index & padding) -->
-              <div class="absolute top-4 left-4 z-20 bg-[#0A0C10]/90 backdrop-blur-md border border-red-500/40 px-3.5 py-2.5 rounded-2xl shadow-xl flex items-center gap-3">
-                <div class="w-9 h-9 rounded-xl bg-red-600/20 text-red-500 flex items-center justify-center font-bold text-base shrink-0">
-                  <i class="fa-solid fa-dumbbell"></i>
+              <!-- Top Badges Container: Stacks vertically on mobile (< 640px) and separates horizontally on larger screens -->
+              <div class="absolute top-4 inset-x-4 z-20 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2.5 pointer-events-none">
+                
+                <!-- Primary Floating Badge: Pradyuman Sir's Mentorship -->
+                <div class="pointer-events-auto bg-[#0A0C10]/90 backdrop-blur-md border border-red-500/40 px-3.5 py-2 sm:py-2.5 rounded-2xl shadow-xl flex items-center gap-3 w-fit">
+                  <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-red-600/20 text-red-500 flex items-center justify-center font-bold text-sm sm:text-base shrink-0">
+                    <i class="fa-solid fa-dumbbell"></i>
+                  </div>
+                  <div>
+                    <div class="text-xs font-bold text-white leading-tight">Pradyuman Sir's Mentorship</div>
+                    <div class="text-[10px] text-slate-300 font-medium">Form Guidance &amp; Tailored Routine</div>
+                  </div>
                 </div>
-                <div>
-                  <div class="text-xs font-bold text-white leading-tight">Pradyuman Sir's Mentorship</div>
-                  <div class="text-[10px] text-slate-300 font-medium">Form Guidance &amp; Tailored Routine</div>
-                </div>
-              </div>
 
-              <!-- Top-Right Floating Brand Badge -->
-              <div class="absolute top-4 right-4 z-20 bg-[#0A0C10]/85 backdrop-blur-md px-3 py-1.5 rounded-full border border-red-500/30 flex items-center gap-2 shadow-lg">
-                <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-                <span class="text-xs font-bold text-white tracking-wide uppercase">P&amp;P Elite Floor</span>
+                <!-- Status Pill Badge: P&P Elite Floor -->
+                <div class="pointer-events-auto bg-[#0A0C10]/85 backdrop-blur-md px-3 py-1.5 rounded-full border border-red-500/30 flex items-center gap-2 shadow-lg w-fit self-start sm:self-auto">
+                  <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                  <span class="text-xs font-bold text-white tracking-wide uppercase">P&amp;P Elite Floor</span>
+                </div>
+
               </div>
 
               <!-- Floating Bottom Info Box: Bajrang Chowk Hub (Neatly positioned with clean padding & spacing) -->
