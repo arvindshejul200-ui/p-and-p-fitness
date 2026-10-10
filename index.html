@@ -218,7 +218,7 @@
   <!-- ======================================================================
        HERO SECTION (High-Energy Athletic Aesthetic + Unisex Imagery)
        ====================================================================== -->
-  <section id="hero" class="relative min-h-[92vh] flex items-center justify-center pt-8 pb-16 px-4 sm:px-6 lg:px-8 overflow-hidden bg-radial-vignette">
+  <section id="hero" class="relative min-h-[92vh] flex items-center justify-center pt-8 pb-20 sm:pb-16 lg:pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden bg-radial-vignette">
     
     <!-- Background Athletic Atmosphere Overlay -->
     <div class="absolute inset-0 bg-cover bg-center opacity-25 mix-blend-luminosity filter contrast-125" 
@@ -234,13 +234,13 @@
       <!-- Hero Left: Content & Badges -->
       <div class="lg:col-span-7 flex flex-col text-left space-y-6">
         
-        <!-- Local Badge -->
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-950/60 border border-red-500/30 text-red-400 text-xs sm:text-sm font-semibold w-max shadow-md shadow-red-950/50">
-          <span class="flex h-2 w-2 relative">
+        <!-- Local Badge (Responsive & overflow-safe on all mobile viewports) -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-950/60 border border-red-500/30 text-red-400 text-xs sm:text-sm font-semibold max-w-[90vw] w-fit whitespace-normal leading-tight shadow-md shadow-red-950/50">
+          <span class="flex h-2 w-2 relative shrink-0">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
             <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
           </span>
-          <span>BAJRANG CHOWK • CIDCO N-8 • CHH. SAMBHAJINAGAR</span>
+          <span>BAJRANG CHOWK, CIDCO N-8 • CHH. SAMBHAJINAGAR</span>
         </div>
 
         <!-- Main Athletic Headline -->
@@ -285,8 +285,8 @@
           </div>
         </div>
 
-        <!-- Dual CTAs -->
-        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+        <!-- Dual CTAs (With mobile-optimized bottom spacing) -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2 pb-2 sm:pb-0">
           <!-- Primary Trial Button -->
           <a href="#booking" class="px-8 py-4 rounded-2xl bg-gradient-to-r from-red-600 via-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-extrabold text-base tracking-wide shadow-xl shadow-red-950/60 border border-red-500/40 transition-all duration-300 hover:scale-[1.02] flex items-center justify-center gap-3 group">
             <i class="fa-solid fa-bolt text-red-200 group-hover:scale-125 transition-transform"></i>
@@ -302,7 +302,7 @@
         </div>
 
         <!-- Trust Mini Tags -->
-        <div class="flex items-center gap-6 text-xs text-slate-400 pt-1">
+        <div class="flex flex-wrap items-center gap-4 sm:gap-6 text-xs text-slate-400 pt-1 pb-2 sm:pb-0">
           <span class="flex items-center gap-1.5">
             <i class="fa-solid fa-shield-halved text-red-500"></i> No Credit Card Required
           </span>
@@ -332,26 +332,15 @@
               <!-- Subtle Dark Gradient Scrim -->
               <div class="absolute inset-0 bg-gradient-to-t from-[#0A0C10] via-black/25 to-transparent"></div>
 
-              <!-- Top Badges Container: Stacks vertically on mobile (< 640px) and separates horizontally on larger screens -->
-              <div class="absolute top-4 inset-x-4 z-20 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2.5 pointer-events-none">
-                
-                <!-- Primary Floating Badge: Pradyuman Sir's Mentorship -->
-                <div class="pointer-events-auto bg-[#0A0C10]/90 backdrop-blur-md border border-red-500/40 px-3.5 py-2 sm:py-2.5 rounded-2xl shadow-xl flex items-center gap-3 w-fit">
-                  <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-red-600/20 text-red-500 flex items-center justify-center font-bold text-sm sm:text-base shrink-0">
-                    <i class="fa-solid fa-dumbbell"></i>
-                  </div>
-                  <div>
-                    <div class="text-xs font-bold text-white leading-tight">Pradyuman Sir's Mentorship</div>
-                    <div class="text-[10px] text-slate-300 font-medium">Form Guidance &amp; Tailored Routine</div>
-                  </div>
+              <!-- Top-Left Floating Badge: Pradyuman Sir's Mentorship (Cleanly positioned, photo unobstructed) -->
+              <div class="absolute top-4 left-4 z-20 bg-[#0A0C10]/90 backdrop-blur-md border border-red-500/40 px-3.5 py-2.5 rounded-2xl shadow-xl flex items-center gap-3 max-w-[calc(100%-2rem)]">
+                <div class="w-9 h-9 rounded-xl bg-red-600/20 text-red-500 flex items-center justify-center font-bold text-base shrink-0">
+                  <i class="fa-solid fa-dumbbell"></i>
                 </div>
-
-                <!-- Status Pill Badge: P&P Elite Floor -->
-                <div class="pointer-events-auto bg-[#0A0C10]/85 backdrop-blur-md px-3 py-1.5 rounded-full border border-red-500/30 flex items-center gap-2 shadow-lg w-fit self-start sm:self-auto">
-                  <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-                  <span class="text-xs font-bold text-white tracking-wide uppercase">P&amp;P Elite Floor</span>
+                <div>
+                  <div class="text-xs font-bold text-white leading-tight">Pradyuman Sir's Mentorship</div>
+                  <div class="text-[10px] text-slate-300 font-medium">Form Guidance &amp; Tailored Routine</div>
                 </div>
-
               </div>
 
               <!-- Floating Bottom Info Box: Bajrang Chowk Hub (Neatly positioned with clean padding & spacing) -->
@@ -1601,7 +1590,7 @@
   <!-- ======================================================================
        FOOTER (With Official Logo Badge, Quick Links & Copyright)
        ====================================================================== -->
-  <footer class="bg-[#050608] border-t border-white/5 pt-16 pb-24 lg:pb-16 px-4 sm:px-6 lg:px-8 text-slate-400 text-xs">
+  <footer class="bg-[#050608] border-t border-white/5 pt-16 pb-32 sm:pb-28 lg:pb-16 px-4 sm:px-6 lg:px-8 text-slate-400 text-xs">
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-white/5">
       
       <!-- Brand & Mission (Featuring Official Logo) -->
@@ -1702,7 +1691,7 @@
   <!-- ======================================================================
        FLOATING WHATSAPP BUTTON (Bottom Right with Pulse Animation & Tooltip)
        ====================================================================== -->
-  <aside aria-label="WhatsApp Chat Widget" class="fixed bottom-20 sm:bottom-8 right-6 z-40 group">
+  <aside aria-label="WhatsApp Chat Widget" class="fixed bottom-24 sm:bottom-8 right-5 sm:right-6 z-40 group">
     <a href="https://wa.me/919356560838?text=Hi%20P%26P%20Fitness%2C%20I%20am%20interested%20in%20joining!" 
        target="_blank" 
        rel="noopener noreferrer"
