@@ -4,7 +4,23 @@
  * Official Red & Black Brand Identity
  */
 
+// Strictly ensure page starts at the very top (Hero section) on initial page load
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
+if (window.location.hash) {
+  history.replaceState(null, '', window.location.pathname + window.location.search);
+  window.scrollTo(0, 0);
+}
+
+window.addEventListener('load', () => {
+  window.scrollTo(0, 0);
+});
+
 document.addEventListener('DOMContentLoaded', () => {
+  window.scrollTo(0, 0);
   initLiveGymSchedule();
   initBookingEngine();
   initPricingToggle();

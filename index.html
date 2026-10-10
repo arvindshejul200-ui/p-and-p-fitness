@@ -3,6 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Immediate Scroll Reset to Top on Page Load -->
+  <script>
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+    if (window.location.hash) {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+      window.scrollTo(0, 0);
+    }
+  </script>
+
   <title>P&P Fitness | Premier Gym & Strength Centre | CIDCO N-8, Chhatrapati Sambhajinagar</title>
   
   <!-- SEO Meta Tags -->
