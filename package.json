@@ -1,0 +1,14 @@
+{
+  "name": "pandp-fitness-website",
+  "version": "1.0.0",
+  "description": "High-converting single-page website for P&P Fitness Gym, Bajrang Chowk, CIDCO N-8, Chhatrapati Sambhajinagar",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "pngjs": "^7.0.0",
+    "vite": "^6.2.0"
+  }
+}
